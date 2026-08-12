@@ -6,6 +6,7 @@
         "noEmit": true,
         "types": ["@citizenfx/client", "@citizenfx/server"],
 
+        "skipLibCheck": true,
         "strict": true,
         "noImplicitAny": true,
         "strictNullChecks": true,
