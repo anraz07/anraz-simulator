@@ -19,7 +19,7 @@ export default function App(){
 
     return(
       <div style={{background: 'rgba(0,0,0,0.8)', color: 'white', padding: '50px'}}>
-        <Menu></Menu>
+        <Menu closeUI={() => setIsVisible(false)}></Menu>
       </div>
     )
 

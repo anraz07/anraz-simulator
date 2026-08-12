@@ -4,8 +4,24 @@ import './Menu.css'
 
 type Tab = 'tracks' | 'leaderboards' | 'personal'
 
-export default function Menu() {
+interface MenuProps{
+    closeUI: () => void
+}
+
+export default function Menu({ closeUI }: MenuProps) {
     const [activeTab, setActiveTab] = useState<Tab>('tracks')
+    const [currentTrack, setCurrentTrack] = useState('')
+    const [currentVehCategory, setCurrentVehCategory] = useState('')
+    
+    function handleStart(){
+
+        fetch(`https://${GetParentResourceName()}/startSimulation`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({track: currentTrack, category: currentVehCategory})
+                });
+                closeUI()
+    }
 
     return (
         <div className="gta-menu-container">
@@ -23,8 +39,20 @@ export default function Menu() {
             <div className="gta-content">
                 {activeTab === 'tracks' && (
                     <div className="tracks-view">
-                        {/*TODO: tracklist and vehicle type list*/}
                         <h3>Select a Track</h3>
+                        <select value={currentTrack} onChange={(e) => setCurrentTrack(e.target.value)}>
+                            <option value="sandyShoresCircuit">Sandy Shores Circuit</option>
+                            <option value="paletoBaySprint">Paleto Bay Sprint</option>
+                        </select>
+                        <select value={currentVehCategory} onChange={(e) => setCurrentVehCategory(e.target.value)}>
+                            <option value="S+">S+</option>
+                            <option value="S">S</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="MS">MS</option>
+                            <option value="MA">MA</option>
+                        </select>
+                        <button onClick={handleStart}>START SIMULATION</button>
                     </div>
                 )}
                 

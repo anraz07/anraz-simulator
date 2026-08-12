@@ -15,3 +15,8 @@ onNet("anraz-simulator:server:requestOpen", () =>{
 
 })
 
+onNet("anraz-simulator:server:startSimulation", (track: string, category: string) =>{
+    const src = source
+    console.log(`Player ${src} wants to play on track: ${track} with category: ${category}`)
+})
+

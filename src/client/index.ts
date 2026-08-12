@@ -27,3 +27,11 @@ on("__cfx_nui:closeMenu", (data:any, cb: (data: any)=> void)=>{
     SetNuiFocus(false, false)
     cb({})
 })
+
+RegisterNuiCallbackType("startSimulation")
+on("__cfx_nui:startSimulation", (data:any, cb: (data:any)=> void)=>{
+    SetNuiFocus(false, false)
+    console.log(data.track, data.category)
+    emitNet("anraz-simulator:server:startSimulation", data.track, data.category)
+    cb({})
+})
