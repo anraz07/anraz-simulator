@@ -1,0 +1,8 @@
+/node_modules
+/dist
+/client
+/nui
+/server
+/config.lua
+/fxmanifest.lua
+.env

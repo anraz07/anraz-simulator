@@ -1,0 +1,31 @@
+{
+  "name": "anraz-simulator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:client": "esbuild src/client/index.ts --bundle --outfile=dist/client.js --target=es2022 --platform=browser",
+    "build:server": "esbuild src/server/index.ts --bundle --outfile=dist/server.js --target=es2022 --platform=node",
+    "build:web": "npm run build --prefix web",
+    "build": "npm run build:client && npm run build:server && npm run build:web",
+    "deploy": "npm run build && node deploy.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://anraz07@github.com/anraz07/anraz-simulator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/anraz07/anraz-simulator/issues"
+  },
+  "homepage": "https://github.com/anraz07/anraz-simulator#readme",
+  "devDependencies": {
+    "@citizenfx/client": "^2.0.34833-1",
+    "@citizenfx/server": "^2.0.34833-1",
+    "esbuild": "^0.28.2",
+    "typescript": "^7.0.2"
+  }
+}
