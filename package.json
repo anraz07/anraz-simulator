@@ -27,5 +27,8 @@
     "@citizenfx/server": "^2.0.34833-1",
     "esbuild": "^0.28.2",
     "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "@overextended/oxmysql": "^2.14.1"
   }
 }

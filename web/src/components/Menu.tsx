@@ -6,9 +6,10 @@ type Tab = 'tracks' | 'leaderboards' | 'personal'
 
 interface MenuProps{
     closeUI: () => void
+    leaderboardData: any[]
 }
 
-export default function Menu({ closeUI }: MenuProps) {
+export default function Menu({ closeUI, leaderboardData }: MenuProps) {
     const [activeTab, setActiveTab] = useState<Tab>('tracks')
     const [currentTrack, setCurrentTrack] = useState('')
     const [currentVehCategory, setCurrentVehCategory] = useState('')
@@ -69,12 +70,14 @@ export default function Menu({ closeUI }: MenuProps) {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Jhon Doe</td>
-                                    <td>S+</td>
-                                    <td>01:24:53</td>
-                                </tr>
+                                {leaderboardData.map((record, index)=>(
+                                    <tr key={index}>
+                                        <td>{index + 1}</td>
+                                        <td>{record.name}</td>
+                                        <td>{record.category}</td>
+                                        <td>{record.time_ms} ms</td>
+                                    </tr>
+                                ))}
                             </tbody>
                         </table>
                     </div>
