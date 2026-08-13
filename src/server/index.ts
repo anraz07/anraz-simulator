@@ -17,6 +17,10 @@ onNet("anraz-simulator:server:requestOpen", () =>{
 
 onNet("anraz-simulator:server:startSimulation", (track: string, category: string) =>{
     const src = source
-    console.log(`Player ${src} wants to play on track: ${track} with category: ${category}`)
+    
+    SetPlayerRoutingBucket(src.toString(), src)
+    emitNet("anraz-simulator:client:initRace", src, track, category)
+
+    console.log(`Player ${src} isolated into Bucket ${src}. Ready for spawning.`);
 })
 

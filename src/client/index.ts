@@ -1,3 +1,4 @@
+import { TRACKS } from "../shared/tracks"
 
 const INTERACTION_COORD: [number, number, number] = [460.0, -990.0, 30.0]
 
@@ -20,6 +21,26 @@ onNet("anraz-simulator:client:openUI", ()=>{
     SendNUIMessage({
         action: "openMenu"
     })
+})
+
+onNet("anraz-simulator:client:initRace", async (trackKey: string, category: string)=>{
+    const spawnPoint = TRACKS[trackKey]
+
+    if(!spawnPoint) return console.log("ERROR: Track not found in dictionary")
+    
+    const vehicleHash = GetHashKey("t20")
+
+    RequestModel(vehicleHash)
+    while (!HasModelLoaded(vehicleHash)){
+        await new Promise(resolve => setTimeout(resolve, 10))
+    }
+
+    const veh = CreateVehicle(vehicleHash, spawnPoint.x, spawnPoint.y, spawnPoint.z, spawnPoint.heading, false, false)
+
+    TaskWarpPedIntoVehicle(PlayerPedId(), veh, -1)
+    SetModelAsNoLongerNeeded(vehicleHash)
+
+    console.log(`Successfully spawned into the simulator`)
 })
 
 RegisterNuiCallbackType("closeMenu")
