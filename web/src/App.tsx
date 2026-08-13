@@ -6,10 +6,10 @@ import Menu from "./components/Menu";
 export default function App(){
 
     const [isVisible, setIsVisible] = useState(false)
-    const [leaderboardData, setLeaderboardData] = useState([])
+    const [uiData, setUiData] = useState<any>(null);
 
     useNuiEvent("openMenu", (payload)=>{
-      setLeaderboardData(payload || [])
+      setUiData(payload)
       setIsVisible(true)
     })
 
@@ -20,8 +20,8 @@ export default function App(){
     }
 
     return(
-      <div style={{background: 'rgba(0,0,0,0.8)', color: 'white', padding: '50px'}}>
-        <Menu closeUI={() => setIsVisible(false)} leaderboardData={leaderboardData} />
+      <div>
+        <Menu closeUI={() => setIsVisible(false)} uiData={uiData} />
       </div>
     )
 

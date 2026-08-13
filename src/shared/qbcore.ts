@@ -1,8 +1,18 @@
-export interface QBCorePlayer{
+export interface QBCorePlayer {
     PlayerData: {
-        job:{
-            name: string
-        }
+        citizenid: string;
+        charinfo: {
+            firstname: string;
+            lastname: string;
+        };
+        job: {
+            name: string;
+            label: string;
+            grade: {
+                name: string;
+                level: number;
+            };
+        };
     }
 }
 

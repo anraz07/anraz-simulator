@@ -1,0 +1,175 @@
+
+.pause-menu-layout {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    gap: 20px;
+}
+
+
+.pause-left-column {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    padding-right: 20px;
+}
+
+
+.pause-list-item {
+    padding: 12px 15px;
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+
+.pause-list-item:hover:not(.selected) {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.pause-list-item.selected {
+    background: white;
+    color: black;
+}
+
+
+.pause-right-column {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    padding-left: 10px;
+}
+
+.track-details-header h2 {
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+    font-size: 24px;
+    border-bottom: 2px solid white;
+    padding-bottom: 5px;
+}
+
+.track-details-header p {
+    font-size: 14px;
+    color: #ccc;
+    margin-bottom: 20px;
+}
+
+
+.track-image-box {
+    width: 100%;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.track-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.track-controls-box {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.gta-select-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.gta-select-row select {
+    background: black;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.gta-stats-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 15px;
+    border-left: 4px solid #1c5233; 
+}
+
+.gta-stats-row div {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+.gta-start-button {
+    margin-top: 10px;
+    padding: 15px;
+    background: white;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    text-transform: uppercase;
+    transition: background 0.1s;
+}
+
+.gta-start-button:hover {
+    background: #1c5233; 
+    color: white;
+}
+
+/* Table Styles */
+.gta-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.gta-table th {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 12px;
+    font-size: 14px;
+    border-bottom: 2px solid #1c5233;
+}
+
+.gta-table td {
+    padding: 12px;
+    color: #ccc;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.list-header {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 2px solid #1c5233;
+    margin-bottom: 10px;
+}

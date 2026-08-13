@@ -1,87 +1,51 @@
-body, html, #root{
-    background: transparent;
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    height: 100vh;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    overflow: hidden;
+/* Base container covering the center of the screen */
+.pause-menu-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 5% auto; /* Pushes it down slightly from the top */
+    font-family: 'Arial', sans-serif;
     user-select: none;
 }
 
-.gta-menu-container{
-    width: 800px;
-    height: 600px;
-    background-color: rgba(0,0,0,0.75);
-    color: white;
-
-    border-radius: 0;
-
+/* The dark grey top header */
+.pause-menu-header {
     display: flex;
-    flex-direction: column;
+    background: rgba(40, 40, 40, 0.95);
+    height: 45px;
 }
 
-
-.gta-header {
-    background-color: rgba(20, 20, 20, 0.9); 
-    padding: 20px; 
-    border-bottom: 3px solid white; 
-}
-
-.gta-header h2 {
-    margin: 0; 
-    font-size: 28px;
-    text-transform: uppercase; 
-    letter-spacing: 2px; 
-}
-
-
-.gta-tabs {
-    margin-top: 20px; 
+/* Individual Tabs */
+.pause-menu-tab {
+    flex: 1; /* Makes all tabs equal width */
     display: flex;
-    gap: 10px; 
-}
-
-
-.gta-tabs button {
-    background: transparent;
+    align-items: center;
+    justify-content: center;
     color: white;
-    border: 2px solid white;
-    padding: 10px 20px;
     font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 1px;
     cursor: pointer;
-    text-transform: uppercase;
-    transition: all 0.1s; 
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 4px solid transparent; /* Placeholder to prevent jumping when active */
+    transition: background 0.1s;
 }
 
+.pause-menu-tab:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.1);
+}
 
-.gta-tabs button:hover, 
-.gta-tabs button.active {
-    background-color: white;
+/* Active Tab (GTA V Style) */
+.pause-menu-tab.active {
+    background: white;
     color: black;
+    border-top: 4px solid #1c5233; /* Essex Green */
+    border-right: none;
 }
 
-
-.gta-content {
-    padding: 20px; 
-    flex: 1; 
-}
-
-.leaderboards-view{
-    width: 100%;
-    border-collapse: collapse;
-    text-align: left;
-}
-
-.leaderboards-view th,
-.leaderboards-view td{
-    padding: 12px
-}
-
-.leaderboards-view tbody tr{
-    border-bottom: 1px solid rbga(225, 225, 225, 0.2);
+/* The main content area underneath */
+.pause-menu-content {
+    background: rgba(0, 0, 0, 0.8);
+    min-height: 600px;
+    display: flex;
+    /* We don't add padding here, because each tab will handle its own layout! */
 }
