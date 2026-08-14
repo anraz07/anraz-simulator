@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './LayOut.css'
+import { formatLapTime } from '../utils/time'
 
 interface TracksTabProps {
     uiData: any
@@ -20,6 +21,17 @@ export default function TracksTab({ uiData, closeUI }: TracksTabProps) {
     const currentTrack = tracks[selectedTrackIndex] as any
 
     if (!currentTrack) return null
+
+    const filteredRecords = (uiData.leaderboards || []).filter((record: any) => {
+    return record.track === currentTrack.id && record.category === selectedCategory;
+    })
+
+    const bestRecord = filteredRecords[0]
+    const topTimeStr = bestRecord ? formatLapTime(bestRecord.time_ms) : '--:--.--'
+
+    const totalMs = filteredRecords.reduce((acc: number, curr: any) => acc + curr.time_ms, 0)
+    const avgMs = filteredRecords.length > 0 ? Math.round(totalMs / filteredRecords.length) : 0
+    const avgTimeStr = formatLapTime(avgMs)
 
     
     function handleStart() {
@@ -72,8 +84,8 @@ export default function TracksTab({ uiData, closeUI }: TracksTabProps) {
                     </div>
 
                     <div className="gta-stats-row">
-                        <div>Top Time: <span>--:--:--</span></div>
-                        <div>Average Time: <span>--:--:--</span></div>
+                        <div>Top Time: <span>{topTimeStr}</span></div>
+                        <div>Average Time: <span>{avgTimeStr}</span></div>
                     </div>
 
                     <button className="gta-start-button" onClick={handleStart}>START SIMULATION</button>

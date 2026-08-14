@@ -31,7 +31,7 @@ onNet("anraz-simulator:server:requestOpen", async (requestedJob: string) =>{
         console.log(`Error: Player ${src} attempted to access a ${requestedJob} simulator, but they are ${Player?.PlayerData?.job?.name}`);
         return
     }else{
-        const topTimes = await oxmysql.query('SELECT * FROM simulator_leaderboards WHERE job = ? ORDER BY time_ms ASC LIMIT 10', [requestedJob]);
+        const topTimes = await oxmysql.query('SELECT * FROM simulator_leaderboards WHERE job = ? ORDER BY time_ms ASC', [requestedJob]);
             
             emitNet("anraz-simulator:client:openUI", src, topTimes, requestedJob, personalInfo);
             

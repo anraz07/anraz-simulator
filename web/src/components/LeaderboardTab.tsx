@@ -1,16 +1,9 @@
 import { useState } from 'react'
+import { formatLapTime } from '../utils/time';
 import './LayOut.css';
 
 interface LeaderboardTabProps {
     uiData: any
-}
-
-
-function formatTime(ms: number) {
-    const minutes = Math.floor(ms / 60000)
-    const seconds = Math.floor((ms % 60000) / 1000)
-    const milliseconds = ms % 1000
-    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${milliseconds.toString().padStart(3, '0')}`
 }
 
 export default function LeaderboardTab({ uiData }: LeaderboardTabProps) {
@@ -22,6 +15,7 @@ export default function LeaderboardTab({ uiData }: LeaderboardTabProps) {
 
     const currentTrack = tracks[selectedTrackIndex] as any
     
+    
    
     const filteredLeaderboards = uiData.leaderboards.filter((record: any) => {
         return record.track === currentTrack.id && record.category === selectedCategory
@@ -31,7 +25,7 @@ export default function LeaderboardTab({ uiData }: LeaderboardTabProps) {
     let totalMs = 0
     filteredLeaderboards.forEach((r: any) => totalMs += r.time_ms)
     const avgMs = filteredLeaderboards.length > 0 ? totalMs / filteredLeaderboards.length : 0
-    const averageTimeStr = avgMs > 0 ? formatTime(avgMs) : "--:--.---"
+    const averageTimeStr = formatLapTime(avgMs)
 
     return (
         <div className="pause-menu-layout">
@@ -88,7 +82,7 @@ export default function LeaderboardTab({ uiData }: LeaderboardTabProps) {
                                 <td>{index + 1}</td>
                                 <td>{record.name}</td>
                                 <td>{record.category}</td>
-                                <td>{formatTime(record.time_ms)}</td> 
+                                <td>{formatLapTime(record.time_ms)}</td> 
                             </tr>
                         ))}
                     </tbody>
