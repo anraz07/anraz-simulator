@@ -1,4 +1,3 @@
-import { QBCoreObject } from "../shared/qbcore"
 import { oxmysql } from '@overextended/oxmysql';
 
 oxmysql.query(`
@@ -15,7 +14,7 @@ oxmysql.query(`
     );
 `);
 
-const QBCore = (exports as any)['qb-core'].GetCoreObject() as QBCoreObject
+const QBCore = exports['qb-core'].GetCoreObject()
 const activeRaces = new Map<string, number>()
 
 onNet("anraz-simulator:server:requestOpen", async (requestedJob: string) =>{
