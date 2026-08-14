@@ -1,4 +1,5 @@
 import { Config } from '../shared/config'
+import { TrackRecorder } from './trackRecorder'
 
 type RaceState = 'INACTIVE' | 'WAITING_TO_START' | 'COUNTDOWN' | 'RACING' | 'FINISHED'
 
@@ -11,6 +12,7 @@ let currentTrackId = ""
 let currentTrackCategory = ""
 let preRaceCoords: number[] | null = null
 let activeCheckpointHandle: number | null = null
+
 
 
 
@@ -109,6 +111,23 @@ setTick(() => {
         }
     }
 })
+
+setTick(() => {
+    TrackRecorder.update();
+})
+
+RegisterCommand("track_record", (source: number, args: string[]) => {
+    const trackId = args[0] || `track_${Date.now()}`
+    TrackRecorder.start(trackId)
+}, false)
+RegisterCommand("track_save", (source: number, args: string[]) => {
+    const trackName = args.join(" ") || "New Track"
+    TrackRecorder.save(trackName)
+}, false)
+RegisterCommand("track_cancel", () => {
+    TrackRecorder.cancel()
+}, false)
+
 
 onNet("anraz-simulator:client:openUI", (leaderboardData: any, requestedJob: string, personalInfo: any) => {
     SetNuiFocus(true, true)
